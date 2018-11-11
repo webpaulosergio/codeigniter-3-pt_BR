@@ -1,0 +1,2536 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Classe de codificação zip &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Referência do database" href="../database/index.html"/>
+        <link rel="prev" title="Classes de servidor XML-RPC e XML-RPC" href="xmlrpc.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Visão geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">Visão geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Auxiliares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Criptografar Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Aula de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de modelo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Tipografia de Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Consultas em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções auxiliares de consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Consultas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo auxiliar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Auxiliar de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Auxiliar de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Auxiliar de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Auxiliar de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Auxiliar de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Visão geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">Visão geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Auxiliares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Criptografar Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Aula de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de modelo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Tipografia de Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Consultas em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções auxiliares de consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Consultas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo auxiliar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Auxiliar de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Auxiliar de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Auxiliar de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Auxiliar de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Auxiliar de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Classe de codificação zip</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="zip-encoding-class">
+<h1>Classe de codificação zip<a class="headerlink" href="#zip-encoding-class" title="Permalink to this headline">¶</a></h1>
+<p>CodeIgniter’s Classe de codificação zip permits you to create Zip archives.
+Archives can be downloaded to your desktop or saved to a directory.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#using-the-zip-encoding-class" id="id1">Using the Classe de codificação zip</a><ul>
+<li><a class="reference internal" href="#initializing-the-class" id="id2">Inicializando a classe</a></li>
+<li><a class="reference internal" href="#usage-example" id="id3">Exemplo de uso</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id4">Class Reference</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="using-the-zip-encoding-class">
+<h2><a class="toc-backref" href="#id1">Using the Classe de codificação zip</a><a class="headerlink" href="#using-the-zip-encoding-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="initializing-the-class">
+<h3><a class="toc-backref" href="#id2">Inicializando a classe</a><a class="headerlink" href="#initializing-the-class" title="Permalink to this headline">¶</a></h3>
+<p>Como a maioria das outras classes no CodeIgniter, a classe Zip é inicializada em
+your controller using the $this-&gt;load-&gt;library function:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Once loaded, the Zip library object will be available using:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-example">
+<h3><a class="toc-backref" href="#id3">Exemplo de uso</a><a class="headerlink" href="#usage-example" title="Permalink to this headline">¶</a></h3>
+<p>Este exemplo demonstra como compactar um arquivo, salvá-lo em uma pasta
+seu servidor e baixe-o para a sua área de trabalho.</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata1.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="c1">// Write the zip file to a folder on your server. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">archive</span><span class="p">(</span><span class="s1">&#39;/path/to/directory/my_backup.zip&#39;</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id4">Class Reference</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Zip">
+<em class="property">class </em><code class="descname">CI_Zip</code><a class="headerlink" href="#CI_Zip" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt>
+<code class="descname">$compression_level = 2</code></dt>
+<dd><p>O nível de compactação a ser usado.</p>
+<p>Pode variar de 0 a 9, com 9 sendo a mais alta e 0 efetivamente desativando a compactação:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">compression_level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::add_data">
+<code class="descname">add_data</code><span class="sig-paren">(</span><em>$filepath</em><span class="optional">[</span>, <em>$data = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::add_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filepath</strong> (<em>mixed</em>) – A single file path or an array of file =&gt; data pairs</li>
+<li><strong>$data</strong> (<em>array</em>) - Conteúdo do arquivo (ignorado se $filepath é um array)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Adiciona dados ao arquivo Zip. Pode trabalhar tanto no modo de arquivos simples como múltiplos.</p>
+<p>When adding a single file, the first parameter must contain the name you would
+like given to the file and the second must contain the file contents:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata1.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata2.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;Another Data String!&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When adding multiple files, the first parameter must contain <em>file =&gt; contents</em> pairs
+and the second parameter is ignored:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;mydata1.txt&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mydata2.txt&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Another Data String!&#39;</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you would like your compressed data organized into sub-directories, simply include
+the path as part of the filename(s):</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;personal/my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>O exemplo acima colocará my_bio.txt dentro de uma pasta chamada pessoal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::add_dir">
+<code class="descname">add_dir</code><span class="sig-paren">(</span><em>$directory</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::add_dir" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$directory</strong> (<em>mixed</em>) – Directory name string or an array of multiple directories</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permite que você adicione um diretório. Geralmente este método é desnecessário, já que você pode colocar
+your data into directories when using <code class="docutils literal"><span class="pre">$this-&gt;zip-&gt;add_data()</span></code>, but if you would like
+to create an empty directory you can do so:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_dir</span><span class="p">(</span><span class="s1">&#39;myfolder&#39;</span><span class="p">);</span> <span class="c1">// Creates a directory called &quot;myfolder&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::read_file">
+<code class="descname">read_file</code><span class="sig-paren">(</span><em>$path</em><span class="optional">[</span>, <em>$archive_filepath = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::read_file" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) – Path to file</li>
+<li><strong>$archive_filepath</strong> (<em>mixed</em>) – New file name/path (string) or (boolean) whether to maintain the original filepath</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permits you to compress a file that already exists somewhere on your server.
+Forneça um caminho de arquivo e a classe zip irá lê-lo e adicioná-lo ao arquivo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you would like the Zip archive to maintain the directory structure of
+o arquivo nele, passa TRUE (booleano) no segundo parâmetro. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the above example, photo.jpg will be placed into the <em>path/to/</em> directory.</p>
+<p>Você também pode especificar um novo nome (caminho incluído) para o arquivo adicionado em tempo real:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$new_path</span> <span class="o">=</span> <span class="s1">&#39;/new/path/some_photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$new_path</span><span class="p">);</span>
+
+<span class="c1">// Download ZIP archive containing /new/path/some_photo.jpg</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_archive.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::read_dir">
+<code class="descname">read_dir</code><span class="sig-paren">(</span><em>$path</em><span class="optional">[</span>, <em>$preserve_filepath = TRUE</em><span class="optional">[</span>, <em>$root_path = NULL</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::read_dir" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) – Path to directory</li>
+<li><strong>$preserve_filepath</strong> (<em>bool</em>) – Whether to maintain the original path</li>
+<li><strong>$root_path</strong> (<em>string</em>) – Part of the path to exclude from the archive directory</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permits you to compress a directory (and its contents) that already exists somewhere on your server.
+Supply a path to the directory and the zip class will recursively read and recreate it as a Zip archive.
+Todos os arquivos contidos no caminho fornecido serão codificados, assim como qualquer subdiretório contido nele. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/directory/&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_dir</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>By default the Zip archive will place all directories listed in the first parameter
+inside the zip. If you want the tree preceding the target directory to be ignored,
+you can pass FALSE (boolean) in the second parameter. Example:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/directory/&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_dir</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This will create a ZIP with a directory named “directory” inside, then all sub-directories
+stored correctly inside that, but will not include the <em>/path/to/your</em> part of the path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::archive">
+<code class="descname">archive</code><span class="sig-paren">(</span><em>$filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::archive" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filepath</strong> (<em>string</em>) – Path to target zip archive</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Writes the Zip-encoded file to a directory on your server. Submit a valid server path
+ending in the file name. Make sure the directory is writable (755 is usually OK).
+Example:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">archive</span><span class="p">(</span><span class="s1">&#39;/path/to/folder/myarchive.zip&#39;</span><span class="p">);</span> <span class="c1">// Creates a file named myarchive.zip</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::download">
+<code class="descname">download</code><span class="sig-paren">(</span><em>$filename = 'backup.zip'</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::download" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filename</strong> (<em>string</em>) – Archive file name</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Causes the Zip file to be downloaded from your server.
+You must pass the name you would like the zip file called. Example:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;latest_stuff.zip&#39;</span><span class="p">);</span> <span class="c1">// File will be named &quot;latest_stuff.zip&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Do not display any data in the controller in which you call
+this method since it sends various server headers that cause the
+download para acontecer e o arquivo a ser tratado como binário.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::get_zip">
+<code class="descname">get_zip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::get_zip" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Zip file content</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Retorna os dados do arquivo compactados com zip. Geralmente você não precisará deste método a menos que você
+want to do something unique with the data. Example:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="nv">$zip_file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">get_zip</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::clear_data">
+<code class="descname">clear_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::clear_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
+<p>A classe Zip armazena em cache seus dados zip para que não precise recompilar o arquivo Zip
+for each method you use above. If, however, you need to create multiple Zip archives,
+each with different data, you can clear the cache between calls. Example:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$zip_file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">get_zip</span><span class="p">();</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">clear_data</span><span class="p">();</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;photo.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="s2">&quot;/path/to/photo.jpg&quot;</span><span class="p">);</span> <span class="c1">// Read the file&#39;s contents</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;myphotos.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../database/index.html" class="btn btn-neutral float-right" title="Referência do database">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="xmlrpc.html" class="btn btn-neutral" title="Classes de servidor XML-RPC e XML-RPC"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Classe de codificação zip &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Referência do database" href="../database/index.html"/>
+        <link rel="prev" title="Classes de servidor XML-RPC e XML-RPC" href="xmlrpc.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Classe de codificação zip</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="zip-encoding-class">
+<h1>Classe de codificação zip<a class="headerlink" href="#zip-encoding-class" title="Permalink to this headline">¶</a></h1>
+<p>CodeIgniter’s Classe de codificação zip permits you to create Zip archives.
+Os arquivos podem ser baixados na sua área de trabalho ou salvos em um diretório.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#using-the-zip-encoding-class" id="id1">Using the Classe de codificação zip</a><ul>
+<li><a class="reference internal" href="#initializing-the-class" id="id2">Inicializando a classe</a></li>
+<li><a class="reference internal" href="#usage-example" id="id3">Exemplo de uso</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id4">Referência de Classe</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="using-the-zip-encoding-class">
+<h2><a class="toc-backref" href="#id1">Using the Classe de codificação zip</a><a class="headerlink" href="#using-the-zip-encoding-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="initializing-the-class">
+<h3><a class="toc-backref" href="#id2">Inicializando a classe</a><a class="headerlink" href="#initializing-the-class" title="Permalink to this headline">¶</a></h3>
+<p>Como a maioria das outras classes no CodeIgniter, a classe Zip é inicializada em
+seu Controller usando a função $this-&gt; load-&gt; library:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Uma vez carregado, o objeto da Library Zip estará disponível usando:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-example">
+<h3><a class="toc-backref" href="#id3">Exemplo de uso</a><a class="headerlink" href="#usage-example" title="Permalink to this headline">¶</a></h3>
+<p>Este exemplo demonstra como compactar um arquivo, salvá-lo em uma pasta
+seu servidor e baixe-o para a sua área de trabalho.</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata1.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="c1">// Write the zip file to a folder on your server. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">archive</span><span class="p">(</span><span class="s1">&#39;/path/to/directory/my_backup.zip&#39;</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id4">Referência de Classe</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Zip">
+<em class="property">class </em><code class="descname">CI_Zip</code><a class="headerlink" href="#CI_Zip" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt>
+<code class="descname">$compression_level = 2</code></dt>
+<dd><p>O nível de compactação a ser usado.</p>
+<p>Pode variar de 0 a 9, com 9 sendo a mais alta e 0 efetivamente desativando a compactação:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">compression_level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::add_data">
+<code class="descname">add_data</code><span class="sig-paren">(</span><em>$filepath</em><span class="optional">[</span>, <em>$data = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::add_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filepath</strong> (<em>mixed</em>) - Um único caminho de arquivo ou uma matriz de arquivo =&gt; pares de dados</li>
+<li><strong>$data</strong> (<em>array</em>) - Conteúdo do arquivo (ignorado se $filepath é um array)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Adiciona dados ao arquivo Zip. Pode trabalhar tanto no modo de arquivos simples como múltiplos.</p>
+<p>Ao adicionar um único arquivo, o primeiro parâmetro deve conter o nome que você
+como dado ao arquivo e o segundo deve conter o conteúdo do arquivo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata1.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata2.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;Another Data String!&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When adding multiple files, the first parameter must contain <em>file =&gt; contents</em> pairs
+e o segundo parâmetro é ignorado:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;mydata1.txt&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mydata2.txt&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Another Data String!&#39;</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Se você quiser que seus dados compactados sejam organizados em subdiretórios, simplesmente inclua
+o caminho como parte do (s) nome (s) de arquivo (s):</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;personal/my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>O exemplo acima colocará my_bio.txt dentro de uma pasta chamada pessoal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::add_dir">
+<code class="descname">add_dir</code><span class="sig-paren">(</span><em>$directory</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::add_dir" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$directory</strong> (<em>mixed</em>) - Cadeia de nome de diretório ou uma matriz de vários diretórios</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permite que você adicione um diretório. Geralmente este método é desnecessário, já que você pode colocar
+your data into directories when using <code class="docutils literal"><span class="pre">$this-&gt;zip-&gt;add_data()</span></code>, but if you would like
+Para criar um diretório vazio, você pode fazer isso:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_dir</span><span class="p">(</span><span class="s1">&#39;myfolder&#39;</span><span class="p">);</span> <span class="c1">// Creates a directory called &quot;myfolder&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::read_file">
+<code class="descname">read_file</code><span class="sig-paren">(</span><em>$path</em><span class="optional">[</span>, <em>$archive_filepath = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::read_file" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) - Caminho para o arquivo</li>
+<li><strong>$archive_filepath</strong> (<em>mixed</em>) - Novo nome de arquivo/caminho (string) ou (booleano) se deseja manter o caminho de arquivo original</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permite que você comprima um arquivo que já existe em algum lugar em seu servidor.
+Forneça um caminho de arquivo e a classe zip irá lê-lo e adicioná-lo ao arquivo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Se você quiser que o arquivo Zip mantenha a estrutura de diretório do
+o arquivo nele, passa TRUE (booleano) no segundo parâmetro. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the above example, photo.jpg will be placed into the <em>path/to/</em> directory.</p>
+<p>Você também pode especificar um novo nome (caminho incluído) para o arquivo adicionado em tempo real:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$new_path</span> <span class="o">=</span> <span class="s1">&#39;/new/path/some_photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$new_path</span><span class="p">);</span>
+
+<span class="c1">// Download ZIP archive containing /new/path/some_photo.jpg</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_archive.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::read_dir">
+<code class="descname">read_dir</code><span class="sig-paren">(</span><em>$path</em><span class="optional">[</span>, <em>$preserve_filepath = TRUE</em><span class="optional">[</span>, <em>$root_path = NULL</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::read_dir" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) - Caminho para o diretório</li>
+<li><strong>$preserve_filepath</strong> (<em>bool</em>) - Se manter o caminho original</li>
+<li><strong>$root_path</strong> (<em>string</em>) - Parte do caminho para excluir do diretório de arquivamento</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permite que você comprima um diretório (e seu conteúdo) que já exista em algum lugar em seu servidor.
+Forneça um caminho para o diretório e a classe zip irá ler e recriar recursivamente como um arquivo Zip.
+Todos os arquivos contidos no caminho fornecido serão codificados, assim como qualquer subdiretório contido nele. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/directory/&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_dir</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Por padrão, o arquivo Zip colocará todos os diretórios listados no primeiro parâmetro
+dentro do zip. Se você quiser que a árvore que precede o diretório de destino seja ignorada,
+você pode passar FALSE (booleano) no segundo parâmetro. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/directory/&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_dir</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Isso criará um ZIP com um diretório chamado "diretório" dentro, então todos os subdiretórios
+stored correctly inside that, but will not include the <em>/path/to/your</em> part of the path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::archive">
+<code class="descname">archive</code><span class="sig-paren">(</span><em>$filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::archive" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filepath</strong> (<em>string</em>) - Caminho para o destino do arquivo zip</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Grava o arquivo codificado em Zip em um diretório em seu servidor. Envie um caminho de servidor válido
+terminando no nome do arquivo. Certifique-se de que o diretório seja gravável (755 geralmente está OK).
+Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">archive</span><span class="p">(</span><span class="s1">&#39;/path/to/folder/myarchive.zip&#39;</span><span class="p">);</span> <span class="c1">// Creates a file named myarchive.zip</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::download">
+<code class="descname">download</code><span class="sig-paren">(</span><em>$filename = 'backup.zip'</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::download" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filename</strong> (<em>string</em>) - Nome do arquivo de arquivamento</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Faz com que o arquivo Zip seja baixado do seu servidor.
+You must pass the name you would like the zip file called. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;latest_stuff.zip&#39;</span><span class="p">);</span> <span class="c1">// File will be named &quot;latest_stuff.zip&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Não exiba nenhum dado no Controller no qual você chama
+este método, uma vez que envia vários cabeçalhos de servidor que causam o
+download para acontecer e o arquivo a ser tratado como binário.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::get_zip">
+<code class="descname">get_zip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::get_zip" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Retorna:</th><td class="field-body">Conteúdo do arquivo zip</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Retorna os dados do arquivo compactados com zip. Geralmente você não precisará deste método a menos que você
+want to do something unique with the data. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="nv">$zip_file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">get_zip</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::clear_data">
+<code class="descname">clear_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::clear_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
+<p>A classe Zip armazena em cache seus dados zip para que não precise recompilar o arquivo Zip
+para cada método usado acima. Se, no entanto, você precisar criar vários arquivos Zip,
+each with different data, you can clear the cache between calls. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$zip_file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">get_zip</span><span class="p">();</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">clear_data</span><span class="p">();</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;photo.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="s2">&quot;/path/to/photo.jpg&quot;</span><span class="p">);</span> <span class="c1">// Read the file&#39;s contents</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;myphotos.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../database/index.html" class="btn btn-neutral float-right" title="Referência do database">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="xmlrpc.html" class="btn btn-neutral" title="Classes de servidor XML-RPC e XML-RPC"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Classe de codificação zip &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Referência do database" href="../database/index.html"/>
+        <link rel="prev" title="Classes de servidor XML-RPC e XML-RPC" href="xmlrpc.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAARgAA/+4ADkFkb2JlAGTAAAAAAf/bAIQABAMDAwMDBAMDBAYEAwQGBwUEBAUHCAYGBwYGCAoICQkJCQgKCgwMDAwMCgwMDQ0MDBERERERFBQUFBQUFBQUFAEEBQUIBwgPCgoPFA4ODhQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAKwCaAwERAAIRAQMRAf/EAHsAAQAABwEBAAAAAAAAAAAAAAABAwQFBgcIAgkBAQAAAAAAAAAAAAAAAAAAAAAQAAEDAwICBwYEAgsAAAAAAAIBAwQAEQUSBiEHkROTVNQWGDFBUVIUCHEiMtOUFWGBobHRQlMkZIRVEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwDSC+ygkOOaUoKigUCgUCgUCgUCgUCgUCgUCgkuGguIP9FBMFb0Hqg7We+3jlmIqqYFf4ub+/QYlnOR/LqIBKGFUbf8qWv971BytQXXE7Y3Lnm3HsFhp2TaZJAdchRXpIgSpdEJWxJEW3xoKV7F5OMy7JkQn2o7D6w33XGjEAkoiqrJEqIiOIiKuhePCgqp22dyYyS3CyWHnQ5joG61HkRnmnTbaFSMhExRVQRRVJU9iUHjE7ez+fJ0MFipmUNhBV8YUd2SoIV9KkjQla9ltegttBdPLW4/qocL+UTfrMiHW4+P9M71shuyrqaHTcxsl7jegpsji8nh5ZwMvDfgTm0RTjSmjYdFCS6KoOIipdFunCgmNYTMv457MMY6U7iI6oMieDDhRm1VbIhuoOkbqtuK0Hpzb+eZcYZexUxt6UyUqK2cd0SdjtgrhOgijcgERUlJOCIl6CpgbP3blRI8XgMjNARAyKNDfeRBdFDBVUAXgQrqH4pxoJTu2NysY97LP4ac1io5q1InHFeGO24LnVKJuKOkSQ/yKir+rh7aCLG1dzypZQI2FnvTgccYOM3FeN0XWERXAUEFVQgQkUktdLpegm+Td3/Xli/L+S/mYNJIOF9G/wBeLKrZHFb0akG6W1WtQWSg3Dyg5e7V3fipE3O4/wCrktyzYA+ufas2LbZIlmnAT2kvuoN1wft95augilglX/tzP3qCu9O3LL/wV/i5v79BvmTADq14UGu91467Z6U9y0HzH/ncj/U/sT/CgynZG7I2NezpZGUjIycJkYkZSG+uQ81pbBNKLxJfjwoMqZ3/ALYHl35AJ7/cuwHcu5k7r1Q5pHetBjquqVVJWGxj9Zrtcl/Ggy3dHMvauR3HFZj5nHNxSyW5JISYDMoIwx8tFIGHZhPNaykGapr6rUAiicEoMG21lMRj8buPAz8xhJrr7uOeiPTCyAwXUaGR1mgozbTusOsFLEiJ7fbQa/h7gcjy2H3V6xppwDNtUSxCJIqp7valBuWVzJ22xuCROXNNZiJkMtms0DbjUkAZjzoDrTMd9dDRI44ZC2YsrYdKWP2WDT2S3N9dNdlRYrGMYc06IURXSYb0igrpWS485xVNS6nF4rwslkoMwnbpgZLB7bmt5uMweAhDEl4B5uSLzzqTnnyVpW2jaJHRMSIjdDiiotvy3DOE5rYTEbkl5yFn28k7JyG4c7AU2HtLH1uKfaiMPI40CdYbpNtmLdwTSn5rewLNld+7TLdeal4WarWBkbVKBjgdElMJJwAAY5fl4kB3b1fp4XvagsGS3FjJfLzDNtS8aeXx7LzT7TyzByQE5PccRGRC0ZRUDRV6y62vbjagzLmJzS2vuPK43JY6aP1TW6Jz+RIWyFtyC06y3EkiiinAo7YCqfq1AqqnGgsOH3lhZO8d1pmcpB8j5XIm9OYlBJSQ/FSS4427DKO0RC8AlcEMhFdViRR1WDWR5t3WXVuL1d106kG9vdeye2g60+1FDyW0shIcXVpyroXt8I8dfd+NB1vioAdWnD3UF1+gD4UFc6CEKpagxXN43rwJLUHz7yX2c8zokt9uHlsPIhA4aRnnHJTLptIS6CNsY7iASpxUUMkReGpfbQW0vtN5pitvrsN28rwtBD0nc0+/Yft5XhaB6TuaXfsP28rwtA9J3NPv2H7eV4Wgek7mn37D9vK8LQPSdzT79h+3leFoHpO5pd+w/byvC0D0nc0u/Yft5XhaB6TuaXfsP28rwtA9J3NLv2H7eV4Wgek7ml37D9vK8LQPSdzS79h+3leFoHpO5p9+w/byvC0E9r7Reazy2HIYVPxkS/CUHVn26cosxyv2g7h89LYmZSXOenvLEQ1YaQ222RATcQCP8rSGqqA8S02W2pQ6FhMoAIlqCtsnwoCpdKClejI4i3Sgtb+GBxVuNBSFt1pV/RQefLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8uM/JQPLjPyUDy4z8lA8utJ/koJ7WCbBU/LQXOPAFq1koK8B0pag90CggtBBf6qB0UDooHRQOigdFA6KB0UDooHRQOigdFA6KB0UDooI0EaBQf//Z" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Classe de codificação zip</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="zip-encoding-class">
+<h1>Classe de codificação zip<a class="headerlink" href="#zip-encoding-class" title="Permalink to this headline">¶</a></h1>
+<p>CodeIgniter’s Classe de codificação zip permits you to create Zip archives.
+Os arquivos podem ser baixados na sua área de trabalho ou salvos em um diretório.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#using-the-zip-encoding-class" id="id1">Using the Classe de codificação zip</a><ul>
+<li><a class="reference internal" href="#initializing-the-class" id="id2">Inicializando a classe</a></li>
+<li><a class="reference internal" href="#usage-example" id="id3">Exemplo de uso</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id4">Referência de Classe</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="using-the-zip-encoding-class">
+<h2><a class="toc-backref" href="#id1">Using the Classe de codificação zip</a><a class="headerlink" href="#using-the-zip-encoding-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="initializing-the-class">
+<h3><a class="toc-backref" href="#id2">Inicializando a classe</a><a class="headerlink" href="#initializing-the-class" title="Permalink to this headline">¶</a></h3>
+<p>Como a maioria das outras classes no CodeIgniter, a classe Zip é inicializada em
+seu Controller usando a função $this-&gt;load-&gt;library function:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">load</span><span class="o">-&gt;</span><span class="na">library</span><span class="p">(</span><span class="s1">&#39;zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Uma vez carregado, o objeto da Library Zip estará disponível usando:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="usage-example">
+<h3><a class="toc-backref" href="#id3">Exemplo de uso</a><a class="headerlink" href="#usage-example" title="Permalink to this headline">¶</a></h3>
+<p>Este exemplo demonstra como compactar um arquivo, salvá-lo em uma pasta
+seu servidor e baixe-o para a sua área de trabalho.</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata1.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="c1">// Write the zip file to a folder on your server. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">archive</span><span class="p">(</span><span class="s1">&#39;/path/to/directory/my_backup.zip&#39;</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id4">Referência de Classe</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Zip">
+<em class="property">class </em><code class="descname">CI_Zip</code><a class="headerlink" href="#CI_Zip" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="attribute">
+<dt>
+<code class="descname">$compression_level = 2</code></dt>
+<dd><p>O nível de compactação a ser usado.</p>
+<p>Pode variar de 0 a 9, com 9 sendo a mais alta e 0 efetivamente desativando a compactação:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">compression_level</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::add_data">
+<code class="descname">add_data</code><span class="sig-paren">(</span><em>$filepath</em><span class="optional">[</span>, <em>$data = NULL</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::add_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filepath</strong> (<em>mixed</em>) - Um único caminho de arquivo ou uma matriz de arquivo =&gt; pares de dados</li>
+<li><strong>$data</strong> (<em>array</em>) - Conteúdo do arquivo (ignorado se $filepath é um array)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Adiciona dados ao arquivo Zip. Pode trabalhar tanto no modo de arquivos simples como múltiplos.</p>
+<p>Ao adicionar um único arquivo, o primeiro parâmetro deve conter o nome que você
+como dado ao arquivo e o segundo deve conter o conteúdo do arquivo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata1.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;mydata2.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;Another Data String!&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>When adding multiple files, the first parameter must contain <em>file =&gt; contents</em> pairs
+e o segundo parâmetro é ignorado:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$data</span> <span class="o">=</span> <span class="k">array</span><span class="p">(</span>
+        <span class="s1">&#39;mydata1.txt&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;A Data String!&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;mydata2.txt&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;Another Data String!&#39;</span>
+<span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Se você quiser que seus dados compactados sejam organizados em subdiretórios, simplesmente inclua
+o caminho como parte do (s) nome (s) de arquivo (s):</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;personal/my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>O exemplo acima colocará my_bio.txt dentro de uma pasta chamada pessoal.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::add_dir">
+<code class="descname">add_dir</code><span class="sig-paren">(</span><em>$directory</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::add_dir" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$directory</strong> (<em>mixed</em>) - Cadeia de nome de diretório ou uma matriz de vários diretórios</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permite que você adicione um diretório. Geralmente este método é desnecessário, já que você pode colocar
+your data into directories when using <code class="docutils literal"><span class="pre">$this-&gt;zip-&gt;add_data()</span></code>, but if you would like
+Para criar um diretório vazio, você pode fazer isso:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_dir</span><span class="p">(</span><span class="s1">&#39;myfolder&#39;</span><span class="p">);</span> <span class="c1">// Creates a directory called &quot;myfolder&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::read_file">
+<code class="descname">read_file</code><span class="sig-paren">(</span><em>$path</em><span class="optional">[</span>, <em>$archive_filepath = FALSE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::read_file" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) - Caminho para o arquivo</li>
+<li><strong>$archive_filepath</strong> (<em>mixed</em>) - Novo nome de arquivo/caminho (string) ou (booleano) se deseja manter o caminho de arquivo original</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permite que você comprima um arquivo que já existe em algum lugar em seu servidor.
+Forneça um caminho de arquivo e a classe zip irá lê-lo e adicioná-lo ao arquivo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Se você quiser que o arquivo Zip mantenha a estrutura de diretório do
+o arquivo nele, passa TRUE (booleano) no segundo parâmetro. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>In the above example, photo.jpg will be placed into the <em>path/to/</em> directory.</p>
+<p>Você também pode especificar um novo nome (caminho incluído) para o arquivo adicionado em tempo real:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/photo.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$new_path</span> <span class="o">=</span> <span class="s1">&#39;/new/path/some_photo.jpg&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="nv">$new_path</span><span class="p">);</span>
+
+<span class="c1">// Download ZIP archive containing /new/path/some_photo.jpg</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_archive.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::read_dir">
+<code class="descname">read_dir</code><span class="sig-paren">(</span><em>$path</em><span class="optional">[</span>, <em>$preserve_filepath = TRUE</em><span class="optional">[</span>, <em>$root_path = NULL</em><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::read_dir" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$path</strong> (<em>string</em>) - Caminho para o diretório</li>
+<li><strong>$preserve_filepath</strong> (<em>bool</em>) - Se manter o caminho original</li>
+<li><strong>$root_path</strong> (<em>string</em>) - Parte do caminho para excluir do diretório de arquivamento</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Permite que você comprima um diretório (e seu conteúdo) que já exista em algum lugar em seu servidor.
+Forneça um caminho para o diretório e a classe zip irá ler e recriar recursivamente como um arquivo Zip.
+Todos os arquivos contidos no caminho fornecido serão codificados, assim como qualquer subdiretório contido nele. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/directory/&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_dir</span><span class="p">(</span><span class="nv">$path</span><span class="p">);</span>
+
+<span class="c1">// Download the file to your desktop. Name it &quot;my_backup.zip&quot;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;my_backup.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Por padrão, o arquivo Zip colocará todos os diretórios listados no primeiro parâmetro
+dentro do zip. Se você quiser que a árvore que precede o diretório de destino seja ignorada,
+você pode passar FALSE (booleano) no segundo parâmetro. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$path</span> <span class="o">=</span> <span class="s1">&#39;/path/to/your/directory/&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_dir</span><span class="p">(</span><span class="nv">$path</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Isso criará um ZIP com um diretório chamado "diretório" dentro, então todos os subdiretórios
+stored correctly inside that, but will not include the <em>/path/to/your</em> part of the path.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::archive">
+<code class="descname">archive</code><span class="sig-paren">(</span><em>$filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::archive" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filepath</strong> (<em>string</em>) - Caminho para o destino do arquivo zip</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Verdadeiro sucesso, FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Grava o arquivo codificado em Zip em um diretório em seu servidor. Envie um caminho de servidor válido
+terminando no nome do arquivo. Certifique-se de que o diretório seja gravável (755 geralmente está OK).
+Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">archive</span><span class="p">(</span><span class="s1">&#39;/path/to/folder/myarchive.zip&#39;</span><span class="p">);</span> <span class="c1">// Creates a file named myarchive.zip</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::download">
+<code class="descname">download</code><span class="sig-paren">(</span><em>$filename = 'backup.zip'</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::download" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$filename</strong> (<em>string</em>) - Nome do arquivo de arquivamento</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Faz com que o arquivo Zip seja baixado do seu servidor.
+You must pass the name you would like the zip file called. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;latest_stuff.zip&#39;</span><span class="p">);</span> <span class="c1">// File will be named &quot;latest_stuff.zip&quot;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Não exiba nenhum dado no Controller no qual você chama
+este método, uma vez que envia vários cabeçalhos de servidor que causam o
+download para acontecer e o arquivo a ser tratado como binário.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::get_zip">
+<code class="descname">get_zip</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::get_zip" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Retorna:</th><td class="field-body">Conteúdo do arquivo zip</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Retorna os dados do arquivo compactados com zip. Geralmente você não precisará deste método a menos que você
+want to do something unique with the data. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+
+<span class="nv">$zip_file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">get_zip</span><span class="p">();</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Zip::clear_data">
+<code class="descname">clear_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Zip::clear_data" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body">void</td>
+</tr>
+</tbody>
+</table>
+<p>A classe Zip armazena em cache seus dados zip para que não precise recompilar o arquivo Zip
+para cada método usado acima. Se, no entanto, você precisar criar vários arquivos Zip,
+each with different data, you can clear the cache between calls. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;my_bio.txt&#39;</span><span class="p">;</span>
+<span class="nv">$data</span> <span class="o">=</span> <span class="s1">&#39;I was born in an elevator...&#39;</span><span class="p">;</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">add_data</span><span class="p">(</span><span class="nv">$name</span><span class="p">,</span> <span class="nv">$data</span><span class="p">);</span>
+<span class="nv">$zip_file</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">get_zip</span><span class="p">();</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">clear_data</span><span class="p">();</span>
+
+<span class="nv">$name</span> <span class="o">=</span> <span class="s1">&#39;photo.jpg&#39;</span><span class="p">;</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">read_file</span><span class="p">(</span><span class="s2">&quot;/path/to/photo.jpg&quot;</span><span class="p">);</span> <span class="c1">// Read the file&#39;s contents</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">zip</span><span class="o">-&gt;</span><span class="na">download</span><span class="p">(</span><span class="s1">&#39;myphotos.zip&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../database/index.html" class="btn btn-neutral float-right" title="Referência do database">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="xmlrpc.html" class="btn btn-neutral" title="Classes de servidor XML-RPC e XML-RPC"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

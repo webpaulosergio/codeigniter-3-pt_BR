@@ -1,0 +1,2107 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Classe de benchmarking &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Cache Driver" href="caching.html"/>
+        <link rel="prev" title="Libraries" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Visão geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">Visão geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Auxiliares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Criptografar Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Aula de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de modelo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Tipografia de Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Consultas em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções auxiliares de consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Consultas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo auxiliar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Auxiliar de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Auxiliar de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Auxiliar de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Auxiliar de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Auxiliar de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Visão geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">Visão geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Auxiliares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Criptografar Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Aula de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de modelo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Tipografia de Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Consultas em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções auxiliares de consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Consultas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo auxiliar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Auxiliar de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Auxiliar de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Auxiliar de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Auxiliar de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Auxiliar de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Classe de benchmarking</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="benchmarking-class">
+<h1>Classe de benchmarking<a class="headerlink" href="#benchmarking-class" title="Permalink to this headline">¶</a></h1>
+<p>CodeIgniter has a Benchmarking class that is always active, enabling the
+time difference between any two marked points to be calculated.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Esta classe é inicializada automaticamente pelo sistema para que
+is no need to do it manually.</p>
+</div>
+<p>Além disso, o benchmark é sempre iniciado no momento em que o framework é
+invoked, and ended by the output class right before sending the final
+view to the browser, enabling a very accurate timing of the entire
+system execution to be shown.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#using-the-benchmark-class" id="id1">Using the Benchmark Class</a><ul>
+<li><a class="reference internal" href="#profiling-your-benchmark-points" id="id2">Profiling Your Benchmark Points</a></li>
+<li><a class="reference internal" href="#displaying-total-execution-time" id="id3">Displaying Total Execution Time</a></li>
+<li><a class="reference internal" href="#displaying-memory-consumption" id="id4">Displaying Memory Consumption</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id5">Class Reference</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="using-the-benchmark-class">
+<h2><a class="toc-backref" href="#id1">Using the Benchmark Class</a><a class="headerlink" href="#using-the-benchmark-class" title="Permalink to this headline">¶</a></h2>
+<p>A classe Benchmark pode ser usada dentro do seu
+<a class="reference internal" href="../general/controllers.html"><span class="doc">controllers</span></a>,
+<a class="reference internal" href="../general/views.html"><span class="doc">views</span></a>ou o seu <a class="reference internal" href="../general/models.html"><span class="doc">models</span></a>.
+The process for usage is this:</p>
+<ol class="arabic simple">
+<li>Mark a start point</li>
+<li>Mark an end point</li>
+<li>Execute a função &quot;tempo decorrido&quot; para visualizar os resultados</li>
+</ol>
+<p>Aqui está um exemplo usando código real:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;code_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;code_end&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;code_start&#39;</span><span class="p">,</span> <span class="s1">&#39;code_end&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p>The words “code_start” and “code_end” are arbitrary. They
+are simply words used to set two markers. You can use any words you
+quer, e você pode definir vários conjuntos de marcadores. Considere este exemplo:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">);</span>
+
+<span class="c1">// More code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="profiling-your-benchmark-points">
+<h3><a class="toc-backref" href="#id2">Profiling Your Benchmark Points</a><a class="headerlink" href="#profiling-your-benchmark-points" title="Permalink to this headline">¶</a></h3>
+<p>If you want your benchmark data to be available to the
+<a class="reference internal" href="../general/profiling.html"><span class="doc">Profiler</span></a> all of your marked points must
+be set up in pairs, and each mark point name must end with _start and
+_end. Each pair of points must otherwise be named identically. Example:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;my_mark_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here...</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;my_mark_end&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;another_mark_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some more code happens here...</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;another_mark_end&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Por favor, leia o <a class="reference internal" href="../general/profiling.html"><span class="doc">Página de perfil</span></a> for more
+information.</p>
+</div>
+<div class="section" id="displaying-total-execution-time">
+<h3><a class="toc-backref" href="#id3">Displaying Total Execution Time</a><a class="headerlink" href="#displaying-total-execution-time" title="Permalink to this headline">¶</a></h3>
+<p>Se você gostaria de exibir o tempo total decorrido desde o momento
+O CodeIgniter começa no momento em que a saída final é enviada ao
+navegador, basta colocar isso em um dos seus modelos de visualização:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">();</span><span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>You’ll notice that it’s the same function used in the examples above to
+calcular o tempo entre dois pontos, exceto que você é <strong>not</strong> using any
+parameters. When the parameters are absent, CodeIgniter does not stop
+the benchmark until right before the final output is sent to the
+browser. It doesn’t matter where you use the function call, the timer
+will continue to run until the very end.</p>
+<p>An alternate way to show your elapsed time in your view files is to use
+this pseudo-variable, if you prefer not to use the pure PHP:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nx">elapsed_time</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">If you want to benchmark anything within your controller
+funções você deve definir seus próprios pontos de início/fim.</p>
+</div>
+</div>
+<div class="section" id="displaying-memory-consumption">
+<h3><a class="toc-backref" href="#id4">Displaying Memory Consumption</a><a class="headerlink" href="#displaying-memory-consumption" title="Permalink to this headline">¶</a></h3>
+<p>If your PHP installation is configured with –enable-memory-limit, you
+pode exibir a quantidade de memória consumida por todo o sistema usando o
+following code in one of your view file:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">memory_usage</span><span class="p">();</span><span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">This function can only be used in your view files. The consumption
+will reflect the total memory used by the entire app.</p>
+</div>
+<p>An alternate way to show your memory usage in your view files is to use
+this pseudo-variable, if you prefer not to use the pure PHP:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nx">memory_usage</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id5">Class Reference</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Benchmark">
+<em class="property">class </em><code class="descname">CI_Benchmark</code><a class="headerlink" href="#CI_Benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Benchmark::mark">
+<code class="descname">mark</code><span class="sig-paren">(</span><em>$name</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::mark" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) – the name you wish to assign to your marker</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Define um marcador de referência.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Benchmark::elapsed_time">
+<code class="descname">elapsed_time</code><span class="sig-paren">(</span><span class="optional">[</span><em>$point1 = ''</em><span class="optional">[</span>, <em>$point2 = ''</em><span class="optional">[</span>, <em>$decimals = 4</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::elapsed_time" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$point1</strong> (<em>string</em>) – a particular marked point</li>
+<li><strong>$point2</strong> (<em>string</em>) – a particular marked point</li>
+<li><strong>$decimals</strong> (<em>int</em>) – number of decimal places for precision</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Elapsed time</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Calcula e retorna a diferença de tempo entre dois pontos marcados.</p>
+<p>Se o primeiro parâmetro estiver vazio, esta função retorna o
+<code class="docutils literal"><span class="pre">{elapsed_time}</span></code> pseudo-variável. Isso permite que o sistema completo
+execution time to be shown in a template. The output class will
+Troque o valor real por esta variável.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Benchmark::memory_usage">
+<code class="descname">memory_usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::memory_usage" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Memory usage info</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Simply returns the <code class="docutils literal"><span class="pre">{memory_usage}</span></code> marker.</p>
+<p>This permits it to be put it anywhere in a template without the memory
+sendo calculado até o final. o <a class="reference internal" href="output.html"><span class="doc">Classe de saída</span></a> will
+Troque o valor real por esta variável.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="caching.html" class="btn btn-neutral float-right" title="Cache Driver">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Libraries"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Classe de benchmarking &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Cache Driver" href="caching.html"/>
+        <link rel="prev" title="Libraries" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Classe de benchmarking</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="benchmarking-class">
+<h1>Classe de benchmarking<a class="headerlink" href="#benchmarking-class" title="Permalink to this headline">¶</a></h1>
+<p>O CodeIgniter possui uma classe de Benchmarking que está sempre ativa, permitindo
+diferença de tempo entre quaisquer dois pontos marcados a serem calculados.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Esta classe é inicializada automaticamente pelo sistema para que
+Não é necessário fazer isso manualmente.</p>
+</div>
+<p>Além disso, o benchmark é sempre iniciado no momento em que o framework é
+invocado e finalizado pela classe de saída antes de enviar a final
+vista para o navegador, permitindo um timing muito preciso de todo o
+execução do sistema a ser mostrada.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#using-the-benchmark-class" id="id1">Usando a Classe de Referência</a><ul>
+<li><a class="reference internal" href="#profiling-your-benchmark-points" id="id2">Criação de perfil dos seus pontos de referência</a></li>
+<li><a class="reference internal" href="#displaying-total-execution-time" id="id3">Exibindo o tempo total de execução</a></li>
+<li><a class="reference internal" href="#displaying-memory-consumption" id="id4">Exibindo Consumo de Memória</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id5">Referência de Classe</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="using-the-benchmark-class">
+<h2><a class="toc-backref" href="#id1">Usando a Classe de Referência</a><a class="headerlink" href="#using-the-benchmark-class" title="Permalink to this headline">¶</a></h2>
+<p>A classe Benchmark pode ser usada dentro do seu
+<a class="reference internal" href="../general/controllers.html"><span class="doc">controllers</span></a>,
+<a class="reference internal" href="../general/views.html"><span class="doc">views</span></a>ou o seu <a class="reference internal" href="../general/models.html"><span class="doc">models</span></a>.
+O processo para uso é este:</p>
+<ol class="arabic simple">
+<li>Marque um ponto inicial</li>
+<li>Marcar um ponto final</li>
+<li>Execute a função &quot;tempo decorrido&quot; para visualizar os resultados</li>
+</ol>
+<p>Aqui está um exemplo usando código real:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;code_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;code_end&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;code_start&#39;</span><span class="p">,</span> <span class="s1">&#39;code_end&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p>As palavras "code_start" e "code_end" são arbitrárias. Eles
+são simplesmente palavras usadas para definir dois marcadores. Você pode usar qualquer palavra que
+quer, e você pode definir vários conjuntos de marcadores. Considere este exemplo:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">);</span>
+
+<span class="c1">// More code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="profiling-your-benchmark-points">
+<h3><a class="toc-backref" href="#id2">Criação de perfil dos seus pontos de referência</a><a class="headerlink" href="#profiling-your-benchmark-points" title="Permalink to this headline">¶</a></h3>
+<p>Se você quiser que seus dados de benchmark estejam disponíveis para o
+<a class="reference internal" href="../general/profiling.html"><span class="doc">perfil</span></a> todos os seus pontos marcados devem
+ser configurado em pares, e cada nome de ponto de marca deve terminar com _start e
+_fim. Cada par de pontos deve ser nomeado de forma idêntica. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;my_mark_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here...</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;my_mark_end&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;another_mark_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some more code happens here...</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;another_mark_end&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Por favor, leia o <a class="reference internal" href="../general/profiling.html"><span class="doc">perfil page</span></a> para mais
+information.</p>
+</div>
+<div class="section" id="displaying-total-execution-time">
+<h3><a class="toc-backref" href="#id3">Exibindo o tempo total de execução</a><a class="headerlink" href="#displaying-total-execution-time" title="Permalink to this headline">¶</a></h3>
+<p>Se você gostaria de exibir o tempo total decorrido desde o momento
+O CodeIgniter começa no momento em que a saída final é enviada ao
+navegador, basta colocar isso em um dos seus Models de visualização:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">();</span><span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>Você notará que é a mesma função usada nos exemplos acima para
+calcular o tempo entre dois pontos, exceto que você é <strong>not</strong> usando qualquer
+parâmetros. Quando os parâmetros estão ausentes, o CodeIgniter não para
+o benchmark até logo antes da saída final é enviada para o
+navegador. Não importa onde você usa a chamada de função, o temporizador
+continuará a ser executado até o final.</p>
+<p>Uma maneira alternativa de mostrar o tempo decorrido em seus arquivos de visualização é usar
+essa pseudo-variável, se você preferir não usar o PHP puro:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nx">elapsed_time</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Se você quiser avaliar qualquer coisa dentro do seu Controller
+funções você deve definir seus próprios pontos de início/fim.</p>
+</div>
+</div>
+<div class="section" id="displaying-memory-consumption">
+<h3><a class="toc-backref" href="#id4">Exibindo Consumo de Memória</a><a class="headerlink" href="#displaying-memory-consumption" title="Permalink to this headline">¶</a></h3>
+<p>Se a sua instalação do PHP estiver configurada com �enable-memory-limit, você
+pode exibir a quantidade de memória consumida por todo o sistema usando o
+código a seguir em um dos seus arquivos de visualização:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">memory_usage</span><span class="p">();</span><span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Esta função só pode ser usada em seus arquivos de View. O consumo
+refletirá a memória total usada por todo o aplicativo.</p>
+</div>
+<p>Uma maneira alternativa de mostrar seu uso de memória em seus arquivos de visualização é usar
+essa pseudo-variável, se você preferir não usar o PHP puro:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nx">memory_usage</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id5">Referência de Classe</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Benchmark">
+<em class="property">class </em><code class="descname">CI_Benchmark</code><a class="headerlink" href="#CI_Benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Benchmark::mark">
+<code class="descname">mark</code><span class="sig-paren">(</span><em>$name</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::mark" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) - o nome que você deseja atribuir ao seu marcador</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Define um marcador de referência.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Benchmark::elapsed_time">
+<code class="descname">elapsed_time</code><span class="sig-paren">(</span><span class="optional">[</span><em>$point1 = ''</em><span class="optional">[</span>, <em>$point2 = ''</em><span class="optional">[</span>, <em>$decimals = 4</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::elapsed_time" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$point1</strong> (<em>string</em>) - um ponto marcado particular</li>
+<li><strong>$point2</strong> (<em>string</em>) - um ponto marcado particular</li>
+<li><strong>$decimals</strong> (<em>int</em>) - número de casas decimais para precisão</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Tempo gasto</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Calcula e retorna a diferença de tempo entre dois pontos marcados.</p>
+<p>Se o primeiro parâmetro estiver vazio, esta função retorna o
+<code class="docutils literal"><span class="pre">{elapsed_time}</span></code> pseudo-variável. Isso permite que o sistema completo
+tempo de execução a ser mostrado em um Model. A classe de saída
+Troque o valor real por esta variável.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Benchmark::memory_usage">
+<code class="descname">memory_usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::memory_usage" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Retorna:</th><td class="field-body">Informações de uso da memória</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Simply returns the <code class="docutils literal"><span class="pre">{memory_usage}</span></code> marker.</p>
+<p>Isso permite colocá-lo em qualquer lugar em um Model sem a memória
+sendo calculado até o final. o <a class="reference internal" href="output.html"><span class="doc">Classe de saída</span></a> will
+Troque o valor real por esta variável.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="caching.html" class="btn btn-neutral float-right" title="Cache Driver">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Libraries"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Classe de benchmarking &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Cache Driver" href="caching.html"/>
+        <link rel="prev" title="Libraries" href="index.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Classe de benchmarking</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="benchmarking-class">
+<h1>Classe de benchmarking<a class="headerlink" href="#benchmarking-class" title="Permalink to this headline">¶</a></h1>
+<p>O CodeIgniter possui uma classe de Benchmarking que está sempre ativa, permitindo
+diferença de tempo entre quaisquer dois pontos marcados a serem calculados.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Esta classe é inicializada automaticamente pelo sistema para que
+Não é necessário fazer isso manualmente.</p>
+</div>
+<p>Além disso, o benchmark é sempre iniciado no momento em que o framework é
+invocado e finalizado pela classe de saída antes de enviar a final
+vista para o navegador, permitindo um timing muito preciso de todo o
+execução do sistema a ser mostrada.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#using-the-benchmark-class" id="id1">Usando a Classe de Referência</a><ul>
+<li><a class="reference internal" href="#profiling-your-benchmark-points" id="id2">Criação de perfil dos seus pontos de referência</a></li>
+<li><a class="reference internal" href="#displaying-total-execution-time" id="id3">Exibindo o tempo total de execução</a></li>
+<li><a class="reference internal" href="#displaying-memory-consumption" id="id4">Exibindo Consumo de Memória</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id5">Referência de Classe</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="using-the-benchmark-class">
+<h2><a class="toc-backref" href="#id1">Usando a Classe de Referência</a><a class="headerlink" href="#using-the-benchmark-class" title="Permalink to this headline">¶</a></h2>
+<p>A classe Benchmark pode ser usada dentro do seu
+<a class="reference internal" href="../general/controllers.html"><span class="doc">controllers</span></a>,
+<a class="reference internal" href="../general/views.html"><span class="doc">views</span></a>, or your <a class="reference internal" href="../general/models.html"><span class="doc">models</span></a>.
+O processo para uso é este:</p>
+<ol class="arabic simple">
+<li>Marque um ponto inicial</li>
+<li>Marcar um ponto final</li>
+<li>Execute a função &quot;tempo decorrido&quot; para visualizar os resultados</li>
+</ol>
+<p>Aqui está um exemplo usando código real:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;code_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;code_end&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;code_start&#39;</span><span class="p">,</span> <span class="s1">&#39;code_end&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p>As palavras "code_start" e "code_end" são arbitrárias. Eles
+são simplesmente palavras usadas para definir dois marcadores. Você pode usar qualquer palavra que
+quer, e você pode definir vários conjuntos de marcadores. Considere este exemplo:</p>
+<div class="last highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">);</span>
+
+<span class="c1">// More code happens here</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;cat&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;cat&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+<span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">(</span><span class="s1">&#39;dog&#39;</span><span class="p">,</span> <span class="s1">&#39;bird&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="profiling-your-benchmark-points">
+<h3><a class="toc-backref" href="#id2">Criação de perfil dos seus pontos de referência</a><a class="headerlink" href="#profiling-your-benchmark-points" title="Permalink to this headline">¶</a></h3>
+<p>Se você quiser que seus dados de benchmark estejam disponíveis para o
+<a class="reference internal" href="../general/profiling.html"><span class="doc">Profiler</span></a> todos os seus pontos marcados devem
+ser configurado em pares, e cada nome de ponto de marca deve terminar com _start e
+_fim. Cada par de pontos deve ser nomeado de forma idêntica. Exemplo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;my_mark_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some code happens here...</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;my_mark_end&#39;</span><span class="p">);</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;another_mark_start&#39;</span><span class="p">);</span>
+
+<span class="c1">// Some more code happens here...</span>
+
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">mark</span><span class="p">(</span><span class="s1">&#39;another_mark_end&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Por favor, leia o <a class="reference internal" href="../general/profiling.html"><span class="doc">Página de perfil</span></a> for more
+information.</p>
+</div>
+<div class="section" id="displaying-total-execution-time">
+<h3><a class="toc-backref" href="#id3">Exibindo o tempo total de execução</a><a class="headerlink" href="#displaying-total-execution-time" title="Permalink to this headline">¶</a></h3>
+<p>Se você gostaria de exibir o tempo total decorrido desde o momento
+O CodeIgniter começa no momento em que a saída final é enviada ao
+navegador, basta colocar isso em um dos seus Models de visualização:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">elapsed_time</span><span class="p">();</span><span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<p>Você notará que é a mesma função usada nos exemplos acima para
+calcular o tempo entre dois pontos, exceto que você é <strong>not</strong> using any
+parâmetros. Quando os parâmetros estão ausentes, o CodeIgniter não para
+o benchmark até logo antes da saída final é enviada para o
+navegador. Não importa onde você usa a chamada de função, o temporizador
+continuará a ser executado até o final.</p>
+<p>Uma maneira alternativa de mostrar o tempo decorrido em seus arquivos de visualização é usar
+essa pseudo-variável, se você preferir não usar o PHP puro:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nx">elapsed_time</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Se você quiser avaliar qualquer coisa dentro do seu Controller
+funções você deve definir seus próprios pontos de início/fim.</p>
+</div>
+</div>
+<div class="section" id="displaying-memory-consumption">
+<h3><a class="toc-backref" href="#id4">Exibindo Consumo de Memória</a><a class="headerlink" href="#displaying-memory-consumption" title="Permalink to this headline">¶</a></h3>
+<p>Se a sua instalação do PHP estiver configurada com �enable-memory-limit, você
+pode exibir a quantidade de memória consumida por todo o sistema usando o
+código a seguir em um dos seus arquivos de visualização:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="o">&lt;?</span><span class="nx">php</span> <span class="k">echo</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">benchmark</span><span class="o">-&gt;</span><span class="na">memory_usage</span><span class="p">();</span><span class="cp">?&gt;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Esta função só pode ser usada em seus arquivos de View. O consumo
+refletirá a memória total usada por todo o aplicativo.</p>
+</div>
+<p>Uma maneira alternativa de mostrar seu uso de memória em seus arquivos de visualização é usar
+essa pseudo-variável, se você preferir não usar o PHP puro:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="p">{</span><span class="nx">memory_usage</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id5">Referência de Classe</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Benchmark">
+<em class="property">class </em><code class="descname">CI_Benchmark</code><a class="headerlink" href="#CI_Benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Benchmark::mark">
+<code class="descname">mark</code><span class="sig-paren">(</span><em>$name</em><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::mark" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$name</strong> (<em>string</em>) - o nome que você deseja atribuir ao seu marcador</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">void</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Define um marcador de referência.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Benchmark::elapsed_time">
+<code class="descname">elapsed_time</code><span class="sig-paren">(</span><span class="optional">[</span><em>$point1 = ''</em><span class="optional">[</span>, <em>$point2 = ''</em><span class="optional">[</span>, <em>$decimals = 4</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::elapsed_time" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$point1</strong> (<em>string</em>) - um ponto marcado particular</li>
+<li><strong>$point2</strong> (<em>string</em>) - um ponto marcado particular</li>
+<li><strong>$decimals</strong> (<em>int</em>) - número de casas decimais para precisão</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Tempo gasto</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Calcula e retorna a diferença de tempo entre dois pontos marcados.</p>
+<p>Se o primeiro parâmetro estiver vazio, esta função retorna o
+<code class="docutils literal"><span class="pre">{elapsed_time}</span></code> pseudo-variável. Isso permite que o sistema completo
+tempo de execução a ser mostrado em um Model. A classe de saída
+Troque o valor real por esta variável.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Benchmark::memory_usage">
+<code class="descname">memory_usage</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Benchmark::memory_usage" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Retorna:</th><td class="field-body">Informações de uso da memória</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Tipo de retorno:</th><td class="field-body">string</td>
+</tr>
+</tbody>
+</table>
+<p>Simply returns the <code class="docutils literal"><span class="pre">{memory_usage}</span></code> marker.</p>
+<p>Isso permite colocá-lo em qualquer lugar em um Model sem a memória
+sendo calculado até o final. o <a class="reference internal" href="output.html"><span class="doc">Classe de saída</span></a> will
+Troque o valor real por esta variável.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="caching.html" class="btn btn-neutral float-right" title="Cache Driver">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Libraries"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

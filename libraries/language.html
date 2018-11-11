@@ -1,0 +1,2197 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Aula de idioma &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Classe Loader" href="loader.html"/>
+        <link rel="prev" title="Classe Javascript" href="javascript.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Visão geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">Visão geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Auxiliares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Criptografar Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Aula de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de modelo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Tipografia de Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Consultas em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções auxiliares de consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Consultas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo auxiliar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Auxiliar de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Auxiliar de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Auxiliar de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Auxiliar de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Auxiliar de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Visão geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">Visão geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Auxiliares</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Criptografar Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Aula de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de modelo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Tipografia de Classe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Consultas em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções auxiliares de consulta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Consultas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo auxiliar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Auxiliar de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Auxiliar de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Auxiliar de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Auxiliar de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Auxiliar de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Aula de idioma</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="language-class">
+<h1>Aula de idioma<a class="headerlink" href="#language-class" title="Permalink to this headline">¶</a></h1>
+<p>o Aula de idioma provides functions to retrieve language files and
+linhas de texto para fins de internacionalização.</p>
+<p>In your CodeIgniter <strong>system</strong> pasta, você encontrará um <strong>language</strong> sub-directory
+containing a set of language files for the <strong>english</strong> idiom.
+Os arquivos neste diretório (<strong>system/language/english/</strong>) define the regular messages,
+error messages, and other generally output terms or expressions, for the different parts
+do framework CodeIgniter.</p>
+<p>You can create or incorporate your own language files, as needed, in order to provide
+application-specific error and other messages, or to provide translations of the core
+messages into other languages. ose translations or additional messages would go inside
+your <strong>application/language/</strong> diretório, com subdiretórios separados para cada idioma
+(for instance, ‘french’ or ‘german’).</p>
+<p>o CodeIgniter framework comes with a set of language files for the “english” idiom.
+Additional approved translations for different idioms may be found in the
+<a class="reference external" href="https://github.com/bcit-ci/codeigniter3-translations">CodeIgniter 3 Translations repositories</a>.
+Each repository deals with a single idiom.</p>
+<p>When CodeIgniter loads language files, it will load the one in <strong>system/language/</strong>
+first and will then look for an override in your <strong>application/language/</strong> directory.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Cada idioma deve ser armazenado em sua própria pasta. Por exemplo,
+the English files are located at: system/language/english</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#handling-multiple-languages" id="id1">Handling Multiple Languages</a><ul>
+<li><a class="reference internal" href="#sample-language-files" id="id2">Amostra de arquivos de idioma</a></li>
+<li><a class="reference internal" href="#example-of-switching-languages" id="id3">Example of switching languages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#internationalization" id="id4">Internationalization</a></li>
+<li><a class="reference internal" href="#using-the-language-class" id="id5">Using the Aula de idioma</a><ul>
+<li><a class="reference internal" href="#creating-language-files" id="id6">Criando arquivos de idioma</a></li>
+<li><a class="reference internal" href="#loading-a-language-file" id="id7">Loading A Language File</a></li>
+<li><a class="reference internal" href="#fetching-a-line-of-text" id="id8">Fetching a Line of Text</a><ul>
+<li><a class="reference internal" href="#using-language-lines-as-form-labels" id="id9">Using language lines as form labels</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#auto-loading-languages" id="id10">Auto-loading Languages</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id11">Class Reference</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="handling-multiple-languages">
+<h2><a class="toc-backref" href="#id1">Handling Multiple Languages</a><a class="headerlink" href="#handling-multiple-languages" title="Permalink to this headline">¶</a></h2>
+<p>Se você quiser oferecer suporte a vários idiomas em seu aplicativo, forneça pastas dentro
+your <strong>application/language/</strong> directory for each of them, and you would specify the default
+idioma em seu <strong>application/config/config.php</strong>.</p>
+<p>o <strong>application/language/english/</strong> diretório conteria quaisquer arquivos de idioma adicionais
+needed by your application, for instance for error messages.</p>
+<p>Each of the other idiom-specific directories would contain the core language files that you
+obtained from the translations repositories, or that you translated yourself, as well as
+any additional ones needed by your application.</p>
+<p>Você armazenaria o idioma que está usando atualmente, por exemplo, em uma variável de sessão.</p>
+<div class="section" id="sample-language-files">
+<h3><a class="toc-backref" href="#id2">Amostra de arquivos de idioma</a><a class="headerlink" href="#sample-language-files" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nb">system</span><span class="o">/</span>
+        <span class="nx">language</span><span class="o">/</span>
+                <span class="nx">english</span><span class="o">/</span>
+                        <span class="o">...</span>
+                        <span class="nx">email_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">form_validation_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="o">...</span>
+
+<span class="nx">application</span><span class="o">/</span>
+        <span class="nx">language</span><span class="o">/</span>
+                <span class="nx">english</span><span class="o">/</span>
+                        <span class="nx">error_messages_lang</span><span class="o">.</span><span class="nx">php</span>
+                <span class="nx">french</span><span class="o">/</span>
+                        <span class="o">...</span>
+                        <span class="nx">email_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">error_messages_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">form_validation_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-of-switching-languages">
+<h3><a class="toc-backref" href="#id3">Example of switching languages</a><a class="headerlink" href="#example-of-switching-languages" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$idiom</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">get_userdata</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;error_messages&#39;</span><span class="p">,</span> <span class="nv">$idiom</span><span class="p">);</span>
+<span class="nv">$oops</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;message_key&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="internationalization">
+<h2><a class="toc-backref" href="#id4">Internationalization</a><a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h2>
+<p>o Language class in CodeIgniter is meant to provide an easy and lightweight
+way to support multiplelanguages in your application. It is not meant to be a
+implementação completa do que é comumente chamado <a class="reference external" href="http://en.wikipedia.org/wiki/Internationalization_and_localization">internacionalização e localização</a>.</p>
+<p>Usamos o termo &quot;idioma&quot; para nos referir a um idioma usando seu nome comum,
+rather than using any of the international standards, such as “en”, “en-US”,
+or “en-CA-x-ca” for English and some of its variants.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">ore is nothing to prevent you from using those abbreviations in your application!</p>
+</div>
+</div>
+<div class="section" id="using-the-language-class">
+<h2><a class="toc-backref" href="#id5">Using the Aula de idioma</a><a class="headerlink" href="#using-the-language-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-language-files">
+<h3><a class="toc-backref" href="#id6">Criando arquivos de idioma</a><a class="headerlink" href="#creating-language-files" title="Permalink to this headline">¶</a></h3>
+<p>Language files must be named with <strong>_lang.php</strong> como a extensão do nome do arquivo.
+For example, let’s say you want to create a file containing error messages.
+You might name it: error_lang.php</p>
+<p>Within the file you will assign each line of text to an array called
+<code class="docutils literal"><span class="pre">$lang</span></code> com este protótipo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;language_key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;o actual message to be shown&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">É uma boa prática usar um prefixo comum para todas as mensagens
+in a given file to avoid collisions with similarly named items in other
+arquivos. Por exemplo, se você estiver criando mensagens de erro, talvez prefira
+eles com erro_</p>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_email_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit an email address&#39;</span><span class="p">;</span>
+<span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_url_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit a URL&#39;</span><span class="p">;</span>
+<span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_username_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit a username&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-a-language-file">
+<h3><a class="toc-backref" href="#id7">Loading A Language File</a><a class="headerlink" href="#loading-a-language-file" title="Permalink to this headline">¶</a></h3>
+<p>Para buscar uma linha de um determinado arquivo, você deve carregar o arquivo
+primeiro. Carregar um arquivo de idioma é feito com o seguinte código:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Onde filename é o nome do arquivo que você deseja carregar (sem o nome
+extensão de arquivo), e language é o conjunto de idiomas que o contém (por
+Inglês). Se o segundo parâmetro estiver ausente, o conjunto de idiomas padrão
+in your <strong>application/config/config.php</strong> file will be used.</p>
+<p>Você também pode carregar vários arquivos de idioma ao mesmo tempo passando uma matriz de arquivos de idioma como primeiro parâmetro.</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;filename1&#39;</span><span class="p">,</span> <span class="s1">&#39;filename2&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">o <em>language</em> parameter can only consist of letters.</p>
+</div>
+</div>
+<div class="section" id="fetching-a-line-of-text">
+<h3><a class="toc-backref" href="#id8">Fetching a Line of Text</a><a class="headerlink" href="#fetching-a-line-of-text" title="Permalink to this headline">¶</a></h3>
+<p>Once your desired language file is loaded you can access any line of
+texto usando esta função:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;language_key&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Where <em>language_key</em> is the array key corresponding to the line you wish
+to show.</p>
+<p>You can optionally pass FALSE as the second argument of that method to
+disable error logging, in case you’re not sure if the line exists:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;misc_key&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">This method simply returns the line. It does not echo it.</p>
+</div>
+<div class="section" id="using-language-lines-as-form-labels">
+<h4><a class="toc-backref" href="#id9">Using language lines as form labels</a><a class="headerlink" href="#using-language-lines-as-form-labels" title="Permalink to this headline">¶</a></h4>
+<p>This feature has been deprecated from the language library and moved to
+the <a class="reference internal" href="../helpers/language_helper.html#lang" title="lang"><code class="xref php php-func docutils literal"><span class="pre">lang()</span></code></a> função do <a class="reference internal" href="../helpers/language_helper.html"><span class="doc">Auxiliar de Idioma</span></a>.</p>
+</div>
+</div>
+<div class="section" id="auto-loading-languages">
+<h3><a class="toc-backref" href="#id10">Auto-loading Languages</a><a class="headerlink" href="#auto-loading-languages" title="Permalink to this headline">¶</a></h3>
+<p>If you find that you need a particular language globally throughout your
+application, you can tell CodeIgniter to <a class="reference internal" href="../general/autoloader.html"><span class="doc">auto-load</span></a> durante a inicialização do sistema. Isso está feito
+by opening the <strong>application/config/autoload.php</strong> file and adding the
+language(s) to the autoload array.</p>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id11">Class Reference</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Lang">
+<em class="property">class </em><code class="descname">CI_Lang</code><a class="headerlink" href="#CI_Lang" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Lang::load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>$langfile</em><span class="optional">[</span>, <em>$idiom = ''</em><span class="optional">[</span>, <em>$return = FALSE</em><span class="optional">[</span>, <em>$add_suffix = TRUE</em><span class="optional">[</span>, <em>$alt_path = ''</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Lang::load" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$langfile</strong> (<em>mixed</em>) – Language file to load or array with multiple files</li>
+<li><strong>$idiom</strong> (<em>string</em>) - Nome do idioma (ou seja, &#39;english&#39;)</li>
+<li><strong>$return</strong> (<em>bool</em>) – Whether to return the loaded array of translations</li>
+<li><strong>$add_suffix</strong> (<em>bool</em>) – Whether to add the ‘_lang’ suffix to the language file name</li>
+<li><strong>$alt_path</strong> (<em>string</em>) - Um caminho alternativo para procurar o arquivo de idioma</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Array of language lines if $return is set to TRUE, otherwise void</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Loads a language file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Lang::line">
+<code class="descname">line</code><span class="sig-paren">(</span><em>$line</em><span class="optional">[</span>, <em>$log_errors = TRUE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Lang::line" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$line</strong> (<em>string</em>) – Language line key name</li>
+<li><strong>$log_errors</strong> (<em>bool</em>) - Se registrar um erro se a linha não for encontrada</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Language line string or FALSE on failure</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Fetches a single translation line from the already loaded language files,
+based on the line’s name.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loader.html" class="btn btn-neutral float-right" title="Classe Loader">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="javascript.html" class="btn btn-neutral" title="Classe Javascript"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdome.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Classe de idioma &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Classe Loader" href="loader.html"/>
+        <link rel="prev" title="Classe Javascript" href="javascript.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Classe de idioma</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="language-class">
+<h1>Classe de idioma<a class="headerlink" href="#language-class" title="Permalink to this headline">¶</a></h1>
+<p>o Classe de idioma provides functions to retrieve language files and
+linhas de texto para fins de internacionalização.</p>
+<p>Em seu CodeIgniter <strong>system</strong> pasta, você encontrará um <strong>language</strong> sub-directory
+contendo um conjunto de arquivos de idioma para o <strong>english</strong> idiom.
+Os arquivos neste diretório (<strong>system/language/english/</strong>) definir as mensagens regulares,
+mensagens de erro e outros termos ou expressões geralmente de saída, para as diferentes partes
+do framework CodeIgniter.</p>
+<p>Você pode criar ou incorporar seus próprios arquivos de idioma, conforme necessário, para fornecer
+erro específico da aplicação e outras mensagens, ou para fornecer traduções do núcleo
+mensagens para outros idiomas. Essas traduções ou mensagens adicionais iriam para dentro
+your <strong>application/language/</strong> diretório, com subdiretórios separados para cada idioma
+(por exemplo, &#39;francês&#39; ou &#39;alemão&#39;).</p>
+<p>O framework do CodeIgniter vem com um conjunto de arquivos de idioma para o idioma &quot;inglês&quot;.
+Traduções aprovadas adicionais para diferentes idiomas podem ser encontradas no
+<a class="reference external" href="https://github.com/bcit-ci/codeigniter3-translations">Repositórios de Tradução do CodeIgniter 3</a>.
+Cada repositório lida com uma única expressão idiomática.</p>
+<p>Quando o CodeIgniter carrega arquivos de idioma, ele carrega aquele em <strong>system/language/</strong>
+primeiro e, em seguida, procure uma substituição em seu <strong>application/language/</strong> directory.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Cada idioma deve ser armazenado em sua própria pasta. Por exemplo,
+os arquivos em inglês estão localizados em: system/language/english</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#handling-multiple-languages" id="id1">Manipulando vários idiomas</a><ul>
+<li><a class="reference internal" href="#sample-language-files" id="id2">Amostra de arquivos de idioma</a></li>
+<li><a class="reference internal" href="#example-of-switching-languages" id="id3">Exemplo de troca de idiomas</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#internationalization" id="id4">Internacionalização</a></li>
+<li><a class="reference internal" href="#using-the-language-class" id="id5">Using the Classe de idioma</a><ul>
+<li><a class="reference internal" href="#creating-language-files" id="id6">Criando arquivos de idioma</a></li>
+<li><a class="reference internal" href="#loading-a-language-file" id="id7">Carregando um arquivo de idioma</a></li>
+<li><a class="reference internal" href="#fetching-a-line-of-text" id="id8">Buscando uma linha de texto</a><ul>
+<li><a class="reference internal" href="#using-language-lines-as-form-labels" id="id9">Usando linhas de idioma como rótulos de formulário</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#auto-loading-languages" id="id10">Idiomas de carregamento automático</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id11">Referência de Classe</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="handling-multiple-languages">
+<h2><a class="toc-backref" href="#id1">Manipulando vários idiomas</a><a class="headerlink" href="#handling-multiple-languages" title="Permalink to this headline">¶</a></h2>
+<p>Se você quiser oferecer suporte a vários idiomas em seu aplicativo, forneça pastas dentro
+your <strong>application/language/</strong> diretório para cada um deles, e você especificaria o padrão
+idioma em seu <strong>application/config/config.php</strong>.</p>
+<p>o <strong>application/language/english/</strong> diretório conteria quaisquer arquivos de idioma adicionais
+necessário pelo seu aplicativo, por exemplo, para mensagens de erro.</p>
+<p>Cada um dos outros diretórios específicos do idioma conterá os arquivos de idioma principais que você
+obtidos dos repositórios de traduções, ou que você se traduziu, bem como
+quaisquer adicionais necessários ao seu aplicativo.</p>
+<p>Você armazenaria o idioma que está usando atualmente, por exemplo, em uma variável de sessão.</p>
+<div class="section" id="sample-language-files">
+<h3><a class="toc-backref" href="#id2">Amostra de arquivos de idioma</a><a class="headerlink" href="#sample-language-files" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nb">system</span><span class="o">/</span>
+        <span class="nx">language</span><span class="o">/</span>
+                <span class="nx">english</span><span class="o">/</span>
+                        <span class="o">...</span>
+                        <span class="nx">email_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">form_validation_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="o">...</span>
+
+<span class="nx">application</span><span class="o">/</span>
+        <span class="nx">language</span><span class="o">/</span>
+                <span class="nx">english</span><span class="o">/</span>
+                        <span class="nx">error_messages_lang</span><span class="o">.</span><span class="nx">php</span>
+                <span class="nx">french</span><span class="o">/</span>
+                        <span class="o">...</span>
+                        <span class="nx">email_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">error_messages_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">form_validation_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-of-switching-languages">
+<h3><a class="toc-backref" href="#id3">Exemplo de troca de idiomas</a><a class="headerlink" href="#example-of-switching-languages" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$idiom</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">get_userdata</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;error_messages&#39;</span><span class="p">,</span> <span class="nv">$idiom</span><span class="p">);</span>
+<span class="nv">$oops</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;message_key&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="internationalization">
+<h2><a class="toc-backref" href="#id4">Internacionalização</a><a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h2>
+<p>o Language class in CodeIgniter is meant to provide an easy and lightweight
+maneira de suportar multiplolinguagens em sua aplicação. Não é para ser um
+implementação completa do que é comumente chamado <a class="reference external" href="http://en.wikipedia.org/wiki/Internacionalização_and_localization">internacionalização e localização</a>.</p>
+<p>Usamos o termo &quot;idioma&quot; para nos referir a um idioma usando seu nome comum,
+em vez de usar qualquer um dos padrões internacionais, como &quot;en&quot;, &quot;en-US&quot;,
+ou &quot;en-CA-x-ca&quot; para o inglês e algumas de suas variantes.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">ore is nothing to prevent you from using those abbreviations na tua application!</p>
+</div>
+</div>
+<div class="section" id="using-the-language-class">
+<h2><a class="toc-backref" href="#id5">Using the Classe de idioma</a><a class="headerlink" href="#using-the-language-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-language-files">
+<h3><a class="toc-backref" href="#id6">Criando arquivos de idioma</a><a class="headerlink" href="#creating-language-files" title="Permalink to this headline">¶</a></h3>
+<p>Os arquivos de idioma devem ser nomeados com <strong>_lang.php</strong> como a extensão do nome do arquivo.
+Por exemplo, digamos que você queira criar um arquivo contendo mensagens de erro.
+Você pode nomear: error_lang.php</p>
+<p>Dentro do arquivo você irá atribuir cada linha de texto a um array chamado
+<code class="docutils literal"><span class="pre">$lang</span></code> com este protótipo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;language_key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;o actual message to be shown&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">É uma boa prática usar um prefixo comum para todas as mensagens
+em um determinado arquivo para evitar colisões com itens com nomes semelhantes em outros
+arquivos. Por exemplo, se você estiver criando mensagens de erro, talvez prefira
+eles com erro_</p>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_email_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit an email address&#39;</span><span class="p">;</span>
+<span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_url_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit a URL&#39;</span><span class="p">;</span>
+<span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_username_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit a username&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-a-language-file">
+<h3><a class="toc-backref" href="#id7">Carregando um arquivo de idioma</a><a class="headerlink" href="#loading-a-language-file" title="Permalink to this headline">¶</a></h3>
+<p>Para buscar uma linha de um determinado arquivo, você deve carregar o arquivo
+primeiro. Carregar um arquivo de idioma é feito com o seguinte código:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Onde filename é o nome do arquivo que você deseja carregar (sem o nome
+extensão de arquivo), e language é o conjunto de idiomas que o contém (por
+Inglês). Se o segundo parâmetro estiver ausente, o conjunto de idiomas padrão
+na tua <strong>application/config/config.php</strong> arquivo será usado.</p>
+<p>Você também pode carregar vários arquivos de idioma ao mesmo tempo passando uma matriz de arquivos de idioma como primeiro parâmetro.</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;filename1&#39;</span><span class="p">,</span> <span class="s1">&#39;filename2&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">o <em>language</em> parameter can only consist of letters.</p>
+</div>
+</div>
+<div class="section" id="fetching-a-line-of-text">
+<h3><a class="toc-backref" href="#id8">Buscando uma linha de texto</a><a class="headerlink" href="#fetching-a-line-of-text" title="Permalink to this headline">¶</a></h3>
+<p>Quando o arquivo de idioma desejado for carregado, você poderá acessar qualquer linha de
+texto usando esta função:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;language_key&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Where <em>language_key</em> is the array key corresponding to the line you wish
+mostrar.</p>
+<p>Você pode, opcionalmente, passar FALSE como o segundo argumento desse método para
+desabilite o log de erros, caso você não tenha certeza se a linha existe:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;misc_key&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Esse método simplesmente retorna a linha. Não faz eco.</p>
+</div>
+<div class="section" id="using-language-lines-as-form-labels">
+<h4><a class="toc-backref" href="#id9">Usando linhas de idioma como rótulos de formulário</a><a class="headerlink" href="#using-language-lines-as-form-labels" title="Permalink to this headline">¶</a></h4>
+<p>Este recurso foi preterido na Library de idiomas e movido para
+the <a class="reference internal" href="../helpers/language_helper.html#lang" title="lang"><code class="xref php php-func docutils literal"><span class="pre">lang()</span></code></a> função do <a class="reference internal" href="../helpers/language_helper.html"><span class="doc">Helper de Idioma</span></a>.</p>
+</div>
+</div>
+<div class="section" id="auto-loading-languages">
+<h3><a class="toc-backref" href="#id10">Idiomas de carregamento automático</a><a class="headerlink" href="#auto-loading-languages" title="Permalink to this headline">¶</a></h3>
+<p>Se você acha que precisa de um idioma em particular em todo o mundo,
+aplicação, você pode dizer ao CodeIgniter para <a class="reference internal" href="../general/autoloader.html"><span class="doc">auto-load</span></a> durante a inicialização do sistema. Isso está feito
+abrindo o <strong>application/config/autoload.php</strong> arquivo e adicionando o
+idioma (s) para o array de carregamento automático.</p>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id11">Referência de Classe</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Lang">
+<em class="property">class </em><code class="descname">CI_Lang</code><a class="headerlink" href="#CI_Lang" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Lang::load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>$langfile</em><span class="optional">[</span>, <em>$idiom = ''</em><span class="optional">[</span>, <em>$return = FALSE</em><span class="optional">[</span>, <em>$add_suffix = TRUE</em><span class="optional">[</span>, <em>$alt_path = ''</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Lang::load" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$langfile</strong> (<em>mixed</em>) - Arquivo de idioma para carregar ou matriz com vários arquivos</li>
+<li><strong>$idiom</strong> (<em>string</em>) - Nome do idioma (ou seja, &#39;english&#39;)</li>
+<li><strong>$return</strong> (<em>bool</em>) - Se deve devolver o conjunto carregado de traduções</li>
+<li><strong>$add_suffix</strong> (<em>bool</em>) - Se deve adicionar o sufixo &quot;_lang&quot; ao nome do arquivo de idioma</li>
+<li><strong>$alt_path</strong> (<em>string</em>) - Um caminho alternativo para procurar o arquivo de idioma</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Matriz de linhas de idioma se $return estiver definido como TRUE, caso contrário, anulará</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Carrega um arquivo de idioma.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Lang::line">
+<code class="descname">line</code><span class="sig-paren">(</span><em>$line</em><span class="optional">[</span>, <em>$log_errors = TRUE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Lang::line" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$line</strong> (<em>string</em>) - Nome da chave da linha de idioma</li>
+<li><strong>$log_errors</strong> (<em>bool</em>) - Se registrar um erro se a linha não for encontrada</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Cadeia de linha de idioma ou FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Obtém uma única linha de tradução dos arquivos de idiomas já carregados,
+com base no nome da linha.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loader.html" class="btn btn-neutral float-right" title="Classe Loader">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="javascript.html" class="btn btn-neutral" title="Classe Javascript"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdome.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Classe de idioma &mdash; CodeIgniter 3.1.9 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/ci-icon.ico"/>
+  
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/citheme.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="CodeIgniter 3.1.9 documentation" href="../index.html"/>
+        <link rel="up" title="Libraries" href="index.html"/>
+        <link rel="next" title="Classe Loader" href="loader.html"/>
+        <link rel="prev" title="Classe Javascript" href="javascript.html"/> 
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div id="nav">
+  <div id="nav_inner">
+    
+    
+    
+      <div id="pulldown-menu" class="ciNav">
+        <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    
+      
+  </div>
+</div>
+<div id="nav2">
+  <a href="#" id="openToc">
+    <img src="data:image/jpeg;base64,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" title="Toggle Table of Contents" alt="Toggle Table of Contents" />
+  </a>
+</div>
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-nav-search">
+        
+          <a href="../index.html" class="fa fa-home"> CodeIgniter</a>
+        
+        
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        
+          
+          
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Bem vindo ao CodeIgniter</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">instruções de instalação</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation/downloads.html">Baixando CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">instruções de instalação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/upgrading.html">Atualizando de uma versão anterior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/troubleshooting.html">Solução de problemas</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">View geral do CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../overview/getting_started.html">Começando</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/at_a_glance.html">View geral do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/features.html">Recursos Suportados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/appflow.html">Fluxograma de Aplicação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/mvc.html">Model-View-Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../overview/goals.html">Objetivos Arquitetônicos</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/static_pages.html">Páginas estáticas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/news_section.html">Seção de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/create_news_items.html">Criar itens de notícias</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorial/conclusion.html">Conclusão</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contribuindo para o CodeIgniter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../documentation/index.html">Escrevendo Documentação do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../DCO.html">Certificado de Origem do Desenvolvedor 1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">Tópicos gerais</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../general/urls.html">URLs do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/reserved_names.html">Nomes Reservados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/views.html">Views</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/libraries.html">Usando Librarys do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_libraries.html">Criando Librarys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/drivers.html">Usando os drivers do CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/creating_drivers.html">Criando Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/core_classes.html">Criando Classes do Sistema Principal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/ancillary_classes.html">Criando Classes Helperes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/hooks.html">Ganchos - Estendendo o Núcleo da Estrutura</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/autoloader.html">Recursos de carregamento automático</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/common_functions.html">Funções Comuns</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/compatibility_functions.html">Funções de Compatibilidade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/routing.html">Roteamento de URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/errors.html">Tratamento de erros</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/caching.html">Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/profiling.html">Criando perfil do seu aplicativo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/cli.html">Correndo via CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/managing_apps.html">Gerenciando seus aplicativos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/environments.html">Manipulando vários ambientes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/alternative_php.html">Sintaxe PHP alternativa para arquivos de visualização</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/security.html">Segurança</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../general/styleguide.html">Guia de Estilo PHP</a></li>
+</ul>
+</li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Classe de benchmarking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Cache Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Classe de calendários</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Classe de carrinho de compras</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Classe Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Classe de email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encrypt.html">Classe de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Library de Criptografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">Classe de Upload de Arquivo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Validação de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ftp.html">Classe FTP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Classe de Manipulação de Imagem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Classe de Entrada</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Classe Javascript</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Classe de idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Classe Loader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Classe de Migrações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Classe de saída</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Classe de Paginação</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Classe de analisador de Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Segurança Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Library de Sessões</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">Classe de Tabela HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Classe de Trackback</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Classe de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Classe de teste unitário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">Classe URI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">Classe de agente do usuário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">Classes de servidor XML-RPC e XML-RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Classe de codificação zip</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">Referência do database</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../database/examples.html">Início rápido: exemplos de uso</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/configuration.html">Configuração do database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/connecting.html">Conectando-se a um database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/queries.html">Querys em Execução</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/results.html">Gerando Resultados da Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/helpers.html">Funções Helperes de Query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/query_builder.html">Classe do Construtor de Querys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/transactions.html">Transações</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/metadata.html">Obtendo MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/call_function.html">Chamadas de Funções Personalizadas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/caching.html">Query Cache</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/forge.html">Manipulação de database com o Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/utilities.html">Classe de Utilitários de Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../database/db_driver_reference.html">Referência do driver de database</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/array_helper.html">Helper de Matriz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/captcha_helper.html">Helper CAPTCHA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/cookie_helper.html">Helper Cookie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/date_helper.html">Helper de Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/directory_helper.html">Helper de Diretório</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/download_helper.html">Baixe o Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/email_helper.html">Helper Email</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/file_helper.html">Arquivo Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/form_helper.html">Helper de Formulário</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/html_helper.html">Helper HTML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/inflector_helper.html">Helper de Infletor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/language_helper.html">Helper de Idioma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/number_helper.html">Helper de números</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/path_helper.html">Helper de caminho</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/security_helper.html">Segurança Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/smiley_helper.html">Helper Smiley</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/string_helper.html">Helper de Cordas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/text_helper.html">Helper de Texto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/typography_helper.html">Helper de Tipografia</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/url_helper.html">Helper de URL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../helpers/xml_helper.html">Helper de XML</a></li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">CodeIgniter</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+        <li><a href="index.html">Libraries</a> &raquo;</li>
+      
+    <li>Classe de idioma</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+    <div style="float:right;margin-left:5px;" id="closeMe">
+      <img title="Classic Layout" alt="classic layout" src="data:image/gif;base64,R0lGODlhFAAUAJEAAAAAADMzM////wAAACH5BAUUAAIALAAAAAAUABQAAAImlI+py+0PU5gRBRDM3DxbWoXis42X13USOLauUIqnlsaH/eY6UwAAOw==" />
+    </div>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document">
+            
+  <div class="section" id="language-class">
+<h1>Classe de idioma<a class="headerlink" href="#language-class" title="Permalink to this headline">¶</a></h1>
+<p>o Classe de idioma provides functions to retrieve language files and
+linhas de texto para fins de internacionalização.</p>
+<p>Em seu CodeIgniter <strong>system</strong> pasta, você encontrará um <strong>language</strong> sub-directory
+contendo um conjunto de arquivos de idioma para o <strong>english</strong> idiom.
+Os arquivos neste diretório (<strong>system/language/english/</strong>) definir as mensagens regulares,
+mensagens de erro e outros termos ou expressões geralmente de saída, para as diferentes partes
+do framework CodeIgniter.</p>
+<p>Você pode criar ou incorporar seus próprios arquivos de idioma, conforme necessário, para fornecer
+erro específico da aplicação e outras mensagens, ou para fornecer traduções do núcleo
+mensagens para outros idiomas. Essas traduções ou mensagens adicionais iriam para dentro
+your <strong>application/language/</strong> diretório, com subdiretórios separados para cada idioma
+(por exemplo, &#39;francês&#39; ou &#39;alemão&#39;).</p>
+<p>O framework do CodeIgniter vem com um conjunto de arquivos de idioma para o idioma &quot;inglês&quot;.
+Traduções aprovadas adicionais para diferentes idiomas podem ser encontradas no
+<a class="reference external" href="https://github.com/bcit-ci/codeigniter3-translations">Repositórios de Tradução do CodeIgniter 3</a>.
+Cada repositório lida com uma única expressão idiomática.</p>
+<p>Quando o CodeIgniter carrega arquivos de idioma, ele carrega aquele em <strong>system/language/</strong>
+primeiro e, em seguida, procure uma substituição em seu <strong>application/language/</strong> directory.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Cada idioma deve ser armazenado em sua própria pasta. Por exemplo,
+os arquivos em inglês estão localizados em: system/language/english</p>
+</div>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#handling-multiple-languages" id="id1">Manipulando vários idiomas</a><ul>
+<li><a class="reference internal" href="#sample-language-files" id="id2">Amostra de arquivos de idioma</a></li>
+<li><a class="reference internal" href="#example-of-switching-languages" id="id3">Exemplo de troca de idiomas</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#internationalization" id="id4">Internacionalização</a></li>
+<li><a class="reference internal" href="#using-the-language-class" id="id5">Using the Classe de idioma</a><ul>
+<li><a class="reference internal" href="#creating-language-files" id="id6">Criando arquivos de idioma</a></li>
+<li><a class="reference internal" href="#loading-a-language-file" id="id7">Carregando um arquivo de idioma</a></li>
+<li><a class="reference internal" href="#fetching-a-line-of-text" id="id8">Buscando uma linha de texto</a><ul>
+<li><a class="reference internal" href="#using-language-lines-as-form-labels" id="id9">Usando linhas de idioma como rótulos de formulário</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#auto-loading-languages" id="id10">Idiomas de carregamento automático</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#class-reference" id="id11">Referência de Classe</a></li>
+</ul>
+</div>
+<div class="custom-index container"></div><div class="section" id="handling-multiple-languages">
+<h2><a class="toc-backref" href="#id1">Manipulando vários idiomas</a><a class="headerlink" href="#handling-multiple-languages" title="Permalink to this headline">¶</a></h2>
+<p>Se você quiser oferecer suporte a vários idiomas em seu aplicativo, forneça pastas dentro
+your <strong>application/language/</strong> diretório para cada um deles, e você especificaria o padrão
+idioma em seu <strong>application/config/config.php</strong>.</p>
+<p>o <strong>application/language/english/</strong> diretório conteria quaisquer arquivos de idioma adicionais
+necessário pelo seu aplicativo, por exemplo, para mensagens de erro.</p>
+<p>Cada um dos outros diretórios específicos do idioma conterá os arquivos de idioma principais que você
+obtidos dos repositórios de traduções, ou que você se traduziu, bem como
+quaisquer adicionais necessários ao seu aplicativo.</p>
+<p>Você armazenaria o idioma que está usando atualmente, por exemplo, em uma variável de sessão.</p>
+<div class="section" id="sample-language-files">
+<h3><a class="toc-backref" href="#id2">Amostra de arquivos de idioma</a><a class="headerlink" href="#sample-language-files" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nb">system</span><span class="o">/</span>
+        <span class="nx">language</span><span class="o">/</span>
+                <span class="nx">english</span><span class="o">/</span>
+                        <span class="o">...</span>
+                        <span class="nx">email_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">form_validation_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="o">...</span>
+
+<span class="nx">application</span><span class="o">/</span>
+        <span class="nx">language</span><span class="o">/</span>
+                <span class="nx">english</span><span class="o">/</span>
+                        <span class="nx">error_messages_lang</span><span class="o">.</span><span class="nx">php</span>
+                <span class="nx">french</span><span class="o">/</span>
+                        <span class="o">...</span>
+                        <span class="nx">email_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">error_messages_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="nx">form_validation_lang</span><span class="o">.</span><span class="nx">php</span>
+                        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-of-switching-languages">
+<h3><a class="toc-backref" href="#id3">Exemplo de troca de idiomas</a><a class="headerlink" href="#example-of-switching-languages" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$idiom</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">session</span><span class="o">-&gt;</span><span class="na">get_userdata</span><span class="p">(</span><span class="s1">&#39;language&#39;</span><span class="p">);</span>
+<span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;error_messages&#39;</span><span class="p">,</span> <span class="nv">$idiom</span><span class="p">);</span>
+<span class="nv">$oops</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;message_key&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="internationalization">
+<h2><a class="toc-backref" href="#id4">Internacionalização</a><a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h2>
+<p>o Language class in CodeIgniter is meant to provide an easy and lightweight
+maneira de suportar multiplolinguagens em sua aplicação. Não é para ser um
+implementação completa do que é comumente chamado <a class="reference external" href="http://en.wikipedia.org/wiki/Internacionalização_and_localization">internacionalização e localização</a>.</p>
+<p>Usamos o termo &quot;idioma&quot; para nos referir a um idioma usando seu nome comum,
+em vez de usar qualquer um dos padrões internacionais, como &quot;en&quot;, &quot;en-US&quot;,
+ou &quot;en-CA-x-ca&quot; para o inglês e algumas de suas variantes.</p>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">ore is nothing to prevent you from using those abbreviations in your application!</p>
+</div>
+</div>
+<div class="section" id="using-the-language-class">
+<h2><a class="toc-backref" href="#id5">Using the Classe de idioma</a><a class="headerlink" href="#using-the-language-class" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="creating-language-files">
+<h3><a class="toc-backref" href="#id6">Criando arquivos de idioma</a><a class="headerlink" href="#creating-language-files" title="Permalink to this headline">¶</a></h3>
+<p>Os arquivos de idioma devem ser nomeados com <strong>_lang.php</strong> como a extensão do nome do arquivo.
+Por exemplo, digamos que você queira criar um arquivo contendo mensagens de erro.
+Você pode nomear: error_lang.php</p>
+<p>Dentro do arquivo você irá atribuir cada linha de texto a um array chamado
+<code class="docutils literal"><span class="pre">$lang</span></code> com este protótipo:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;language_key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;o actual message to be shown&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">É uma boa prática usar um prefixo comum para todas as mensagens
+em um determinado arquivo para evitar colisões com itens com nomes semelhantes em outros
+arquivos. Por exemplo, se você estiver criando mensagens de erro, talvez prefira
+eles com erro_</p>
+</div>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_email_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit an email address&#39;</span><span class="p">;</span>
+<span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_url_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit a URL&#39;</span><span class="p">;</span>
+<span class="nv">$lang</span><span class="p">[</span><span class="s1">&#39;error_username_missing&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;You must submit a username&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="loading-a-language-file">
+<h3><a class="toc-backref" href="#id7">Carregando um arquivo de idioma</a><a class="headerlink" href="#loading-a-language-file" title="Permalink to this headline">¶</a></h3>
+<p>Para buscar uma linha de um determinado arquivo, você deve carregar o arquivo
+primeiro. Carregar um arquivo de idioma é feito com o seguinte código:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;language&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Onde filename é o nome do arquivo que você deseja carregar (sem o nome
+extensão de arquivo), e language é o conjunto de idiomas que o contém (por
+Inglês). Se o segundo parâmetro estiver ausente, o conjunto de idiomas padrão
+in your <strong>application/config/config.php</strong> arquivo será usado.</p>
+<p>Você também pode carregar vários arquivos de idioma ao mesmo tempo passando uma matriz de arquivos de idioma como primeiro parâmetro.</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">load</span><span class="p">(</span><span class="k">array</span><span class="p">(</span><span class="s1">&#39;filename1&#39;</span><span class="p">,</span> <span class="s1">&#39;filename2&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">o <em>language</em> parameter can only consist of letters.</p>
+</div>
+</div>
+<div class="section" id="fetching-a-line-of-text">
+<h3><a class="toc-backref" href="#id8">Buscando uma linha de texto</a><a class="headerlink" href="#fetching-a-line-of-text" title="Permalink to this headline">¶</a></h3>
+<p>Quando o arquivo de idioma desejado for carregado, você poderá acessar qualquer linha de
+texto usando esta função:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;language_key&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Where <em>language_key</em> is the array key corresponding to the line you wish
+to show.</p>
+<p>Você pode, opcionalmente, passar FALSE como o segundo argumento desse método para
+desabilite o log de erros, caso você não tenha certeza se a linha existe:</p>
+<div class="highlight-ci"><div class="highlight"><pre><span></span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">lang</span><span class="o">-&gt;</span><span class="na">line</span><span class="p">(</span><span class="s1">&#39;misc_key&#39;</span><span class="p">,</span> <span class="k">FALSE</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Nota</p>
+<p class="last">Esse método simplesmente retorna a linha. Não faz eco.</p>
+</div>
+<div class="section" id="using-language-lines-as-form-labels">
+<h4><a class="toc-backref" href="#id9">Usando linhas de idioma como rótulos de formulário</a><a class="headerlink" href="#using-language-lines-as-form-labels" title="Permalink to this headline">¶</a></h4>
+<p>Este recurso foi preterido na Library de idiomas e movido para
+the <a class="reference internal" href="../helpers/language_helper.html#lang" title="lang"><code class="xref php php-func docutils literal"><span class="pre">lang()</span></code></a> função do <a class="reference internal" href="../helpers/language_helper.html"><span class="doc">Helper de Idioma</span></a>.</p>
+</div>
+</div>
+<div class="section" id="auto-loading-languages">
+<h3><a class="toc-backref" href="#id10">Idiomas de carregamento automático</a><a class="headerlink" href="#auto-loading-languages" title="Permalink to this headline">¶</a></h3>
+<p>Se você acha que precisa de um idioma em particular em todo o mundo,
+aplicação, você pode dizer ao CodeIgniter para <a class="reference internal" href="../general/autoloader.html"><span class="doc">auto-load</span></a> durante a inicialização do sistema. Isso está feito
+abrindo o <strong>application/config/autoload.php</strong> arquivo e adicionando o
+idioma (s) para o array de carregamento automático.</p>
+</div>
+</div>
+<div class="section" id="class-reference">
+<h2><a class="toc-backref" href="#id11">Referência de Classe</a><a class="headerlink" href="#class-reference" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="CI_Lang">
+<em class="property">class </em><code class="descname">CI_Lang</code><a class="headerlink" href="#CI_Lang" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="CI_Lang::load">
+<code class="descname">load</code><span class="sig-paren">(</span><em>$langfile</em><span class="optional">[</span>, <em>$idiom = ''</em><span class="optional">[</span>, <em>$return = FALSE</em><span class="optional">[</span>, <em>$add_suffix = TRUE</em><span class="optional">[</span>, <em>$alt_path = ''</em><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Lang::load" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$langfile</strong> (<em>mixed</em>) - Arquivo de idioma para carregar ou matriz com vários arquivos</li>
+<li><strong>$idiom</strong> (<em>string</em>) - Nome do idioma (ou seja, &#39;english&#39;)</li>
+<li><strong>$return</strong> (<em>bool</em>) - Se deve devolver o conjunto carregado de traduções</li>
+<li><strong>$add_suffix</strong> (<em>bool</em>) - Se deve adicionar o sufixo &quot;_lang&quot; ao nome do arquivo de idioma</li>
+<li><strong>$alt_path</strong> (<em>string</em>) - Um caminho alternativo para procurar o arquivo de idioma</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Matriz de linhas de idioma se $return estiver definido como TRUE, caso contrário, anulará</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">mixed</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Carrega um arquivo de idioma.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="CI_Lang::line">
+<code class="descname">line</code><span class="sig-paren">(</span><em>$line</em><span class="optional">[</span>, <em>$log_errors = TRUE</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#CI_Lang::line" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parâmetros:</th><td class="field-body"><ul class="first simple">
+<li><strong>$line</strong> (<em>string</em>) - Nome da chave da linha de idioma</li>
+<li><strong>$log_errors</strong> (<em>bool</em>) - Se registrar um erro se a linha não for encontrada</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Retorna:</th><td class="field-body"><p class="first">Cadeia de linha de idioma ou FALSE em falha</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Tipo de retorno:</th><td class="field-body"><p class="first last">string</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Obtém uma única linha de tradução dos arquivos de idiomas já carregados,
+com base no nome da linha.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="loader.html" class="btn btn-neutral float-right" title="Classe Loader">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="javascript.html" class="btn btn-neutral" title="Classe Javascript"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2014 - 2018, British Columbia Institute of Technology.
+      Last updated on Jun 12, 2018.
+    </p>
+  </div>
+
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'3.1.9',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  false
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdome.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
